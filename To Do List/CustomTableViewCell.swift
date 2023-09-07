@@ -9,12 +9,11 @@ import UIKit
 
 class CustomTableViewCell: UITableViewCell {
     
-    /*let checkBox: CheckboxButton = {
-        let box = CheckboxButton()
+    let checkBox: UIImageView = {
+        let box = UIImageView()
         box.translatesAutoresizingMaskIntoConstraints = false
-        retu
+        return box
     }()
-    */
     
     let descriptionLabel: UILabel = {
         let label = UILabel()
@@ -41,16 +40,20 @@ class CustomTableViewCell: UITableViewCell {
     }
     
     func setupLayout() {
+        addSubview(checkBox)
         addSubview(descriptionLabel)
         addSubview(dateLabel)
         
         NSLayoutConstraint.activate([
+            checkBox.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            checkBox.centerYAnchor.constraint(equalTo: centerYAnchor),
+            
             descriptionLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -10),
-            descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
-            descriptionLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.4),
+            descriptionLabel.leadingAnchor.constraint(equalTo: checkBox.leadingAnchor, constant: 40),
+            descriptionLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7),
             
             dateLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 3),
-            dateLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
+            dateLabel.leadingAnchor.constraint(equalTo: checkBox.leadingAnchor, constant: 40),
             dateLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.4),
         ])
     }

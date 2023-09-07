@@ -94,7 +94,7 @@ class TaskViewController: UIViewController {
     @objc func save() {
         guard let text = textField.text else { return }
         let date = datePicker.date
-        var task = Task(text: text, date: date)
+        var task = Task(text: text, date: date, isDone: false)
         delegate!.addTaskToList(task)
         dismiss(animated: true)
     }

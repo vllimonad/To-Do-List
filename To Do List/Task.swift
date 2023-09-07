@@ -11,9 +11,11 @@ class Task: Codable {
     
     let text: String
     let date: Date
+    var isDone: Bool
     
-    init(text: String, date: Date) {
+    init(text: String, date: Date, isDone: Bool) {
         self.text = text
         self.date = date
+        self.isDone = isDone
     }
 }

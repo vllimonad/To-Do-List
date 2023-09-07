@@ -17,7 +17,7 @@ class ViewController: UITableViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(openTaskForm))
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.rowHeight = 64
+        tableView.rowHeight = 60
         readList()
     }
     
@@ -27,6 +27,12 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
+        let con = UIImage.SymbolConfiguration(pointSize: 25, weight: .regular)
+        if list[indexPath.row].isDone {
+            cell.checkBox.image = UIImage(systemName: "checkmark.circle", withConfiguration: con)
+        } else {
+            cell.checkBox.image = UIImage(systemName: "circle", withConfiguration: con)
+        }
         cell.descriptionLabel.text = list[indexPath.row].text
         
         let formatter = DateFormatter()
@@ -36,9 +42,11 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        list.remove(at: indexPath.row)
+        list[indexPath.row].isDone.toggle()
         tableView.deselectRow(at: indexPath, animated: true)
-        tableView.reloadData()
+        tableView.reloadRows(at: [indexPath], with: .fade)
+        //list.remove(at: indexPath.row)
+        //tableView.reloadData()
         saveList()
     }
     
