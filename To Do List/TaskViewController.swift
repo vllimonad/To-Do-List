@@ -9,24 +9,100 @@ import UIKit
 
 class TaskViewController: UIViewController {
     
+    var delegate: ViewController?
     
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "New Task"
+        label.font = UIFont.boldSystemFont(ofSize: 34)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let panelView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 20
+        view.backgroundColor = .lightGray
+        view.layer.shadowColor = UIColor.lightGray.cgColor
+        view.layer.shadowRadius = 10
+        view.layer.shadowOffset = CGSize(width: 400, height: 400)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    let stackView: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.spacing = 20
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
+    let textField: UITextField = {
+        let field = UITextField()
+        field.placeholder = "Title"
+        field.translatesAutoresizingMaskIntoConstraints = false
+        return field
+    }()
+    
+    let datePicker: UIDatePicker = {
+        let picker = UIDatePicker()
+        picker.datePickerMode = .date
+        picker.preferredDatePickerStyle = .inline
+        picker.translatesAutoresizingMaskIntoConstraints = false
+        return picker
+    }()
+    
+    let saveButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Save", for: .normal)
+        button.backgroundColor = .gray
+        button.layer.cornerRadius = 12
+        button.addTarget(self, action: #selector(save), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        title = "Add Task"
-
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancel))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(save))
+        setupLayout()
     }
-
     
-    @objc func cancel() {
-        dismiss(animated: true)
+    func setupLayout() {
+        view.addSubview(titleLabel)
+        view.addSubview(panelView)
+        panelView.addSubview(stackView)
+        stackView.addArrangedSubview(textField)
+        stackView.addArrangedSubview(datePicker)
+        stackView.addArrangedSubview(saveButton)
+        
+        NSLayoutConstraint.activate([
+            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            titleLabel.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 60),
+            
+            panelView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            panelView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 150),
+            panelView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            panelView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -150),
+            
+            stackView.leadingAnchor.constraint(equalTo: panelView.leadingAnchor, constant: 20),
+            stackView.topAnchor.constraint(equalTo: panelView.topAnchor, constant: 20),
+            stackView.trailingAnchor.constraint(equalTo: panelView.trailingAnchor, constant: -20)
+            
+        ])
     }
     
     @objc func save() {
-        
+        guard let text = textField.text else { return }
+        let date = datePicker.date
+        var task = Task(text: text, date: date, isDone: false)
+        delegate!.addTaskToList(task)
+        dismiss(animated: true)
     }
 
+}
+
+protocol NewTask{
+    func addTaskToList(_ task: Task)
 }

@@ -15,14 +15,9 @@ class ViewController: UITableViewController {
         super.viewDidLoad()
         title = "To Do List"
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "cell")
-        list.append(Task(text: "kasdjcn", date: Date.now, isDone: false))
-        list.append(Task(text: "kasdjcn", date: Date.now, isDone: false))
-        list.append(Task(text: "kasdjcn", date: Date.now, isDone: false))
-        list.append(Task(text: "kasdjcn", date: Date.now, isDone: false))
-        list.append(Task(text: "kasdjcn", date: Date.now, isDone: false))
         
         tableView.rowHeight = 64
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTask))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(openTaskForm))
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -30,9 +25,12 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
         cell.descriptionLabel.text = list[indexPath.row].text
-        cell.dateLabel.text = list[indexPath.row].date.formatted()
+        
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        cell.dateLabel.text = formatter.string(from: list[indexPath.row].date)
         return cell
     }
     
@@ -40,10 +38,18 @@ class ViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    @objc func addTask() {
-        let task = UINavigationController(rootViewController: TaskViewController())
+    @objc func openTaskForm() {
+        let task = TaskViewController()
+        task.delegate = self
         task.modalPresentationStyle = .formSheet
         present(task, animated: true)
     }
 }
 
+
+extension ViewController: NewTask {
+    func addTaskToList(_ task: Task) {
+        list.append(task)
+        tableView.reloadData()
+    }
+}
