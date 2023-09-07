@@ -7,15 +7,13 @@
 
 import Foundation
 
-class Task {
+class Task: Codable {
     
-    var text: String
-    var date: Date
-    var isDone: Bool
+    let text: String
+    let date: Date
     
-    init(text: String, date: Date, isDone: Bool) {
+    init(text: String, date: Date) {
         self.text = text
         self.date = date
-        self.isDone = isDone
     }
 }

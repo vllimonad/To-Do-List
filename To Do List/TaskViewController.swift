@@ -22,10 +22,7 @@ class TaskViewController: UIViewController {
     let panelView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 20
-        view.backgroundColor = .lightGray
-        view.layer.shadowColor = UIColor.lightGray.cgColor
-        view.layer.shadowRadius = 10
-        view.layer.shadowOffset = CGSize(width: 400, height: 400)
+        view.backgroundColor = .systemGray4
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -56,7 +53,8 @@ class TaskViewController: UIViewController {
     let saveButton: UIButton = {
         let button = UIButton()
         button.setTitle("Save", for: .normal)
-        button.backgroundColor = .gray
+        button.setTitleColor(.black, for: .normal)
+        button.backgroundColor = .systemGray2
         button.layer.cornerRadius = 12
         button.addTarget(self, action: #selector(save), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -96,7 +94,7 @@ class TaskViewController: UIViewController {
     @objc func save() {
         guard let text = textField.text else { return }
         let date = datePicker.date
-        var task = Task(text: text, date: date, isDone: false)
+        var task = Task(text: text, date: date)
         delegate!.addTaskToList(task)
         dismiss(animated: true)
     }

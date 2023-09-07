@@ -9,14 +9,21 @@ import UIKit
 
 class CustomTableViewCell: UITableViewCell {
     
-    var descriptionLabel: UILabel = {
+    /*let checkBox: CheckboxButton = {
+        let box = CheckboxButton()
+        box.translatesAutoresizingMaskIntoConstraints = false
+        retu
+    }()
+    */
+    
+    let descriptionLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    var dateLabel: UILabel = {
+    let dateLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
         label.font = UIFont.systemFont(ofSize: 12)
