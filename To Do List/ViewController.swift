@@ -18,7 +18,7 @@ class ViewController: UITableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(openTaskForm))
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.rowHeight = 60
-        //readList()
+        readList()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -40,17 +40,16 @@ class ViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         list[indexPath.row].isDone.toggle()
         tableView.deselectRow(at: indexPath, animated: true)
-        //tableView.reloadRows(at: [indexPath], with: .fade)
-        //list.remove(at: indexPath.row)
-        tableView.reloadData()
-        //saveList()
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+        saveList()
     }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        var swap = UISwipeActionsConfiguration(actions: [UIContextualAction(style: .destructive, title: "Delete", handler: { [weak self] _,_,_  in
+        let swap = UISwipeActionsConfiguration(actions: [UIContextualAction(style: .destructive, title: "Delete", handler: { [weak self] _,_,_  in
             self?.list.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         })])
+        saveList()
         return swap
     }
     

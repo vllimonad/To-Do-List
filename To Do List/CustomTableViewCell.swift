@@ -48,11 +48,11 @@ class CustomTableViewCell: UITableViewCell {
             checkBox.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             checkBox.centerYAnchor.constraint(equalTo: centerYAnchor),
             
-            descriptionLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -10),
+            descriptionLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -5),
             descriptionLabel.leadingAnchor.constraint(equalTo: checkBox.leadingAnchor, constant: 40),
             descriptionLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7),
             
-            dateLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 3),
+            dateLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 5),
             dateLabel.leadingAnchor.constraint(equalTo: checkBox.leadingAnchor, constant: 40),
             dateLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.4),
         ])
