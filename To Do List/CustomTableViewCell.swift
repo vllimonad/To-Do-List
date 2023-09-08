@@ -45,7 +45,7 @@ class CustomTableViewCell: UITableViewCell {
         addSubview(dateLabel)
         
         NSLayoutConstraint.activate([
-            checkBox.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            checkBox.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             checkBox.centerYAnchor.constraint(equalTo: centerYAnchor),
             
             descriptionLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -10),
