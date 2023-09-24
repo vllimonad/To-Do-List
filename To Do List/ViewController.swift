@@ -10,6 +10,12 @@ import UIKit
 class ViewController: UITableViewController {
     
     var list = [Task]()
+    let formatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        return formatter
+    }()
+    let configuration = UIImage.SymbolConfiguration(pointSize: 25, weight: .regular)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,10 +33,7 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        let con = UIImage.SymbolConfiguration(pointSize: 25, weight: .regular)
-        cell.checkBox.image = UIImage(systemName: list[indexPath.row].isDone ? "checkmark.circle" : "circle", withConfiguration: con)
+        cell.checkBox.image = UIImage(systemName: list[indexPath.row].isDone ? "checkmark.circle" : "circle", withConfiguration: configuration)
         cell.descriptionLabel.text = list[indexPath.row].text
         cell.dateLabel.text = formatter.string(from: list[indexPath.row].date)
         
@@ -54,7 +57,7 @@ class ViewController: UITableViewController {
     }
     
     @objc func openTaskForm() {
-        let task = TaskViewController()
+        let task = NewTaskViewController()
         task.delegate = self
         task.modalPresentationStyle = .formSheet
         present(task, animated: true)
@@ -82,7 +85,7 @@ class ViewController: UITableViewController {
 }
 
 
-extension ViewController: NewTask {
+extension ViewController: TaskViewControllerDelegate {
     func addTaskToList(_ task: Task) {
         list.append(task)
         tableView.reloadData()

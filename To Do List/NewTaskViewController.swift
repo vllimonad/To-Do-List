@@ -7,9 +7,9 @@
 
 import UIKit
 
-class TaskViewController: UIViewController {
+class NewTaskViewController: UIViewController {
     
-    var delegate: ViewController?
+    var delegate: TaskViewControllerDelegate?
     
     let titleLabel: UILabel = {
         let label = UILabel()
@@ -63,7 +63,7 @@ class TaskViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         setupLayout()
     }
     
@@ -101,6 +101,6 @@ class TaskViewController: UIViewController {
 
 }
 
-protocol NewTask{
+protocol TaskViewControllerDelegate{
     func addTaskToList(_ task: Task)
 }

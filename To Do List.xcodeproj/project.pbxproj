@@ -13,7 +13,7 @@
 		2B2103C42AA9FA92006CA8D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B2103C32AA9FA92006CA8D2 /* Assets.xcassets */; };
 		2B2103CF2AA9FBBF006CA8D2 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2103CE2AA9FBBF006CA8D2 /* Task.swift */; };
 		2B2103D12AAA00F2006CA8D2 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2103D02AAA00F2006CA8D2 /* CustomTableViewCell.swift */; };
-		2B2103D32AAA0897006CA8D2 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2103D22AAA0897006CA8D2 /* TaskViewController.swift */; };
+		2B2103D32AAA0897006CA8D2 /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2103D22AAA0897006CA8D2 /* NewTaskViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +25,7 @@
 		2B2103C82AA9FA92006CA8D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B2103CE2AA9FBBF006CA8D2 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		2B2103D02AAA00F2006CA8D2 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
-		2B2103D22AAA0897006CA8D2 /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
+		2B2103D22AAA0897006CA8D2 /* NewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +62,7 @@
 				2B2103BA2AA9FA91006CA8D2 /* AppDelegate.swift */,
 				2B2103BC2AA9FA91006CA8D2 /* SceneDelegate.swift */,
 				2B2103BE2AA9FA91006CA8D2 /* ViewController.swift */,
-				2B2103D22AAA0897006CA8D2 /* TaskViewController.swift */,
+				2B2103D22AAA0897006CA8D2 /* NewTaskViewController.swift */,
 				2B2103D02AAA00F2006CA8D2 /* CustomTableViewCell.swift */,
 				2B2103CE2AA9FBBF006CA8D2 /* Task.swift */,
 				2B2103C32AA9FA92006CA8D2 /* Assets.xcassets */,
@@ -152,7 +152,7 @@
 				2B2103BF2AA9FA91006CA8D2 /* ViewController.swift in Sources */,
 				2B2103BB2AA9FA91006CA8D2 /* AppDelegate.swift in Sources */,
 				2B2103BD2AA9FA91006CA8D2 /* SceneDelegate.swift in Sources */,
-				2B2103D32AAA0897006CA8D2 /* TaskViewController.swift in Sources */,
+				2B2103D32AAA0897006CA8D2 /* NewTaskViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
