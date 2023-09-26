@@ -1,6 +1,12 @@
 # To Do List
-To Do List is an iOS application to add, delete and mark as done reminders.
+An iOS application developed to help users manage and organize their tasks and responsibilities efficiently.
+
+User can add, delete and mark as done tasks.
+
+### Frameworks
+1. UIKit
+2. Foundation
 
 ### Technologies
-1. UIKit
+1. UserDefaults
 2. JSON
