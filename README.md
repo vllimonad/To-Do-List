@@ -1,5 +1,5 @@
 # To Do List
-An iOS application developed to help users manage and organize their tasks and responsibilities efficiently.
+An iOS application that was developed to help users manage and organize their tasks and responsibilities efficiently.
 
 User can add, delete and mark as done tasks.
 
