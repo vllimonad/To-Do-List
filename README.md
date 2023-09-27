@@ -8,5 +8,5 @@ User can add, delete and mark as done tasks.
 2. Foundation
 
 ### Technologies
-1. UserDefaults
+1. FileManager
 2. JSON
