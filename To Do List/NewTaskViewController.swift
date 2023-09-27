@@ -53,7 +53,6 @@ class NewTaskViewController: UIViewController {
     let saveButton: UIButton = {
         let button = UIButton()
         button.setTitle("Save", for: .normal)
-        button.setTitleColor(.black, for: .normal)
         button.backgroundColor = .systemGray2
         button.layer.cornerRadius = 12
         button.addTarget(self, action: #selector(save), for: .touchUpInside)

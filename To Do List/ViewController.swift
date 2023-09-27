@@ -64,11 +64,9 @@ class ViewController: UITableViewController {
     }
     
     func readList() {
-        let defaults = UserDefaults.standard
-        if let data = defaults.object(forKey: "tasks") as? Data {
-            let jsonDecoder = JSONDecoder()
+        if let data = try? Data(contentsOf: getLocation()) {
             do {
-                list = try jsonDecoder.decode([Task].self, from: data)
+                list = try JSONDecoder().decode([Task].self, from: data)
             } catch {
                 print("reading error")
             }
@@ -76,11 +74,14 @@ class ViewController: UITableViewController {
     }
     
     func saveList() {
-        let jsonEncoder = JSONEncoder()
-        if let data = try? jsonEncoder.encode(list) {
-            let defaults = UserDefaults.standard
-            defaults.set(data, forKey: "tasks")
+        if let data = try? JSONEncoder().encode(list) {
+            try? data.write(to: getLocation())
         }
+    }
+    
+    func getLocation() -> URL {
+        let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+        return url!.appending(path: "tasks.txt")
     }
 }
 
@@ -88,6 +89,7 @@ class ViewController: UITableViewController {
 extension ViewController: TaskViewControllerDelegate {
     func addTaskToList(_ task: Task) {
         list.append(task)
+        list.sort(by: { $0.date > $1.date })
         tableView.reloadData()
         saveList()
     }
